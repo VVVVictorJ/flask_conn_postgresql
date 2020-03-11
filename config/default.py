@@ -4,7 +4,7 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     """Base config"""
-    DEBUG = False
+    DEBUG = True
     DB_SERVER = 'localhost'
     ENV = 'development'
 
