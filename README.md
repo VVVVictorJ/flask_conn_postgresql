@@ -2,6 +2,7 @@
 
 flask 连接 potsgresql  
 postgresql 数据库迁移
+登录模块 register_func
 
 #### 目录结构
 
