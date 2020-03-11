@@ -5,6 +5,7 @@ postgresql 数据库迁移
 
 #### 目录结构
 
+```
 db-test/
 ├── __pycache__
 │   └── app.cpython-37.pyc
@@ -28,3 +29,4 @@ db-test/
 │   ├── __pycache__
 │   └── models.py          数据库表
 └── run.sh
+```
