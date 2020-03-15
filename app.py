@@ -23,6 +23,7 @@ db = SQLAlchemy(app)
 #engine = create_engine('postgresql://flask_server:zhj12345@localhost/videocommunity')
 #Session = sessionmaker(bind=engine)
 #session = Session()
+#不需要上面这三行db是由flask_sqlalchemy中的SQLAlchemy注册的，db.session就可以使用会话
 
 class User(db.Model):
     __tablename__ = 'users'
@@ -67,6 +68,28 @@ def register_func():
     db.session.commit()
     return "success"
 
+@app.route('/login',methods=['POST'])
+def login():
+    username = request.form['username']
+    registered = User.query.filter_by(username=request.form['username']).all()
+    if registered.__len__() is not 0:
+        passwd_right = User.query.filter_by(username=request.form['username'],
+                password_hash=request.form['password_hash']).all()
+        if passwd_right.__len__() is not 0:
+            print(str(username)+" log success")
+            return jsonify({
+                username:"success"
+                })
+        else:
+            print(str(username) + " log failed")
+            return jsonify({
+                username:"failed"
+                })
+    else:
+        print(str(username)+" log failed")                                                      
+        return jsonify({
+            username:"try again"
+            })
 
 if __name__=='__main__':
     app.run()
